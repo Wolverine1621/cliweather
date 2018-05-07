@@ -28,3 +28,9 @@ If you compile CLIWeather on your own, it must be compiled with C++ 11.
 ### Installation
 
 Installation script coming soon!
+
+### Planned Features
+
+- Installation script
+- Change API key/default location through command line arguments
+- Alternate (metric system) units
