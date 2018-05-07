@@ -12,11 +12,16 @@ to the program. You will be prompted for this in the same manner if userData.txt
 
 Currently, CLIWeather is only available for Linux.
 
+Example usage:
+
+- `./cliweather` for use with default user data
+- `./cliweather [CITY]` or `./cliweather [CITY,COUNTRY CODE]` for specific user data
+
 ### Dependencies
 
 CLIWeather makes use of https://github.com/nlohmann/json for processing and parsing of JSON data.
 
-CLIWeather uses (cUrl)[https://curl.haxx.se/] to download weather data.
+CLIWeather uses [cUrl](https://curl.haxx.se/) to download weather data.
 
 If you compile CLIWeather on your own, it must be compiled with C++ 11.
 
