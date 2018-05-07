@@ -45,7 +45,7 @@ string wind(double speed, double degree) {
 	return windSpeed.str();
 }
 
-pair<string, string> readUserData(ifstream& dataFile) {
+pair<string,string> readUserData(ifstream& dataFile) {
 	string apiKey;
 	string defaultLocation;
 
@@ -54,6 +54,14 @@ pair<string, string> readUserData(ifstream& dataFile) {
 	getline(dataFile, defaultLocation);
 
 	return {apiKey, defaultLocation};
+}
+
+pair<string,string> readUserDataFromArgument(ifstream& dataFile, string location) {
+	string apiKey;
+
+	dataFile >> apiKey;
+
+	return {apiKey, location};
 }
 
 void createUserData(ofstream& dataFile) {
@@ -117,7 +125,7 @@ void processWeatherData(ifstream& json_in) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
 	// Reading user data
 	ifstream dataFileTest;
 	ofstream dataFileWrite;
@@ -135,8 +143,14 @@ int main() {
 	// Reading user data file
 	dataFileRead.open("userData.txt");
 	pair<string,string> userData;
-	userData = readUserData(dataFileRead);	
-
+	if (argc == 2) {
+		userData = readUserDataFromArgument(dataFileRead, argv[1]);
+	
+	} else {
+		dataFileRead.open("userData.txt");
+		userData = readUserData(dataFileRead);	
+	}
+	
 	// Making request
 	makeRequest(userData);
 
